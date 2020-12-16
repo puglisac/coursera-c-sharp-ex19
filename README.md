@@ -1,22 +1,32 @@
-# Exercise 18: Mouse Jumping
+# Exercise 19: Spawn and Explode
 
 This is an exercise for the coursera course [Introduction to C# Programming and Unity](https://www.coursera.org/learn/introduction-programming-unity)
 
-### Problem 1 - Create a project and add a sprite
+### Problem 1 - Setting up the mouse button processer
 
-Create a new 2D Unity project named Exercise18. Add a new scenes folder and save the current scene as scene0. Add a new sprites folder and use your Operating System to copy a sprite of your choosing into that folder. Drag the sprite into the Hierarchy window to create a game object in the scene. Run the game and watch nothing happen.
+Drag the MouseButtonProcessor script from the scripts folder in the Project window onto the Main Camera in the Hierarchy window. Left click the Main Camera in the Hierarchy window to select it.
 
-### Problem 2 - Write the code
+Expand the prefabs folder in the Project window and drag the Explosion prefab onto the Prefab Explosion field in the Mouse Button Processor (Script) component in the Inspector. Drag the TeddyBear prefab onto the Prefab Teddy Bear field in the Mouse Button Processor (Script) component in the Inspector.
 
-Create a new scripts folder and create a new C# script in that folder called Jumper. Open the new script in your IDE and add a documentation comment for the class. The Jumper class (script) jumps the game object to the mouse location when the left mouse button is pressed.
+### Problem 2 - Spawn teddy bear on left mouse button
 
-Delete the **Start** method from the script. Add code to the body of the **Update** method to implement the required behavior. The Mouse Button Processing lecture covers mouse button input processing in detail.
+Open the Input Manager, expand the Axes area if necessary, and add 1 to the value next to Size. Expand the bottom input axis (the one you just added) and change the Name to SpawnTeddyBear. Change the Positive Button to mouse 0 and delete the Alt Positive Button.
 
-### Problem 3 - Finish the game
+Open the MouseButtonProcessor script in your IDE.
 
-Run the game to make sure it works properly. Swear because you didn't attach the script to anything.
+Add code to the **Update** method to instantiate the teddy bear prefab at the mouse location when there's input on the SpawnTeddyBear axis. The Mouse Button Processing Revisited lecture discusses how to only respond on the first frame of input on an axis; you should use that approach here to make sure you only spawn a single teddy bear when the player presses the left mouse button. The Mouse Location Processing lecture shows how to determine the location of the mouse in world coordinates. 
 
-Attach the script to your sprite game object and run the game again. Debug as necessary.
+Test your code to make sure it works properly and debug as necessary.
+
+### Problem 3 - Explode a teddy bear on right mouse button
+
+Open the Input Manager, expand the Axes area if necessary, and add 1 to the value next to Size. Expand the bottom input axis (the one you just added) and change the Name to ExplodeTeddyBear. Change the Positive Button to mouse 1 and delete the Alt Positive Button.
+
+Open the MouseButtonProcessor script in your IDE.
+
+Add code to the **Update** method to explode one of the teddy bears in the game. The Mouse Button Processing Revisited lecture discusses how to only respond on the first frame of input on an axis; you should use that approach here to make sure you only explode a single teddy bear when the player presses the right mouse button. I already tagged the TeddyBear prefab with a TeddyBear tag, so you can get one of the teddy bears in the game using the **GameObject.FindWithTag** method. Because that method can return null (if there are no teddy bears in the game), check for null before trying to blow up the teddy bear. If the teddy bear isn't null, instantiate the explosion prefab at the teddy bear's position and destroy the teddy bear.
+
+Test your code to make sure it works properly and debug as necessary.
 
 ## Installation
 To install, follow these steps:
@@ -28,6 +38,6 @@ Download and extract the zip file to a directory of your choice.
 
 Via command line:
 
-`$ git clone https://github.com/puglisac/coursera-c-sharp-ex18.git`  
+`$ git clone https://github.com/puglisac/coursera-c-sharp-ex19.git`  
 
 add folder to [Unity](https://unity.com/) with [Unity Hub](https://unity3d.com/get-unity/download).
