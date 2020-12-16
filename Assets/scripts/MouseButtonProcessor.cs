@@ -33,7 +33,7 @@ public class MouseButtonProcessor : MonoBehaviour
                 newPosition.z = -Camera.main.transform.position.z;
                 newPosition = Camera.main.ScreenToWorldPoint(newPosition);
                 //spawn new teddyBear
-                GameObject teddyBear = Instantiate(prefabTeddyBear) as GameObject;
+                GameObject teddyBear = Instantiate(prefabTeddyBear);
                 teddyBear.transform.position = newPosition;
             }
         }
@@ -50,10 +50,12 @@ public class MouseButtonProcessor : MonoBehaviour
                 explodeInputOnPreviousFrame = true;
 
                 GameObject teddyBearToExplode = GameObject.FindWithTag("TeddyBear");
+
                 if (teddyBearToExplode)
                 {
+                    //get location of teddyBearToExplode, destroy it and show explosion
                     Vector3 location = teddyBearToExplode.transform.position;
-                    GameObject explosion = Instantiate(prefabExplosion) as GameObject;
+                    GameObject explosion = Instantiate(prefabExplosion);
                     explosion.transform.position = location;
                     Destroy(teddyBearToExplode);
                 }
